@@ -55,6 +55,7 @@ import {
   getCombosCacheVersion,
   getSessionAccountAffinity,
 } from "@/lib/localDb";
+import { evictSessionAffinityOnComboTimeout } from "../services/sessionAffinityPin";
 import { resolveModelLockoutSettings } from "@/lib/resilience/modelLockoutSettings";
 import {
   ensureOpenAIStoreSessionFallback,
@@ -1424,7 +1425,7 @@ async function handleSingleModelChat(
         clientRawRequest,
         runtimeOptions.modelAbortSignal
       );
-      const { result, tlsFingerprintUsed } = await executeChatWithBreaker({
+      const dispatchArgs = {
         bypassCircuitBreaker: forceLiveComboTest || hasForcedConnection,
         breaker,
         body: requestBody,
@@ -1451,8 +1452,39 @@ async function handleSingleModelChat(
         correlationId: runtimeOptions?.correlationId ?? null,
         modelPinned: runtimeOptions?.modelPinned ?? false,
         routingComboId: runtimeOptions?.routingComboId ?? null,
-      });
+      };
+      let result: any;
+      let tlsFingerprintUsed: boolean;
+      try {
+        ({ result, tlsFingerprintUsed } = await executeChatWithBreaker(dispatchArgs));
+      } catch (dispatchErr) {
+        // #6219 follow-up: a combo per-model timeout aborts this dispatch, and
+        // buildTargetTimeoutRunner swallows the rejection behind its synthetic 524 —
+        // so the generic failover eviction further down never runs and nothing marks
+        // the account unavailable (correctly: a stall is not a quota/auth failure).
+        // Without this the sticky pin survived its full TTL and every following
+        // request in the session was handed straight back to the stalled account.
+        evictSessionAffinityOnComboTimeout({
+          sessionKey: runtimeOptions.sessionAffinityKey,
+          provider,
+          connectionId: credentials.connectionId,
+          modelAbortSignal: runtimeOptions.modelAbortSignal,
+        });
+        throw dispatchErr;
+      }
       if (telemetry) telemetry.endPhase();
+
+      // Same eviction for the variant where the executor swallows the abort and
+      // surfaces it as a failed result instead of a rejection. The helper is a
+      // no-op unless this dispatch was aborted by the combo per-model timeout.
+      if (!result?.success) {
+        evictSessionAffinityOnComboTimeout({
+          sessionKey: runtimeOptions.sessionAffinityKey,
+          provider,
+          connectionId: credentials.connectionId,
+          modelAbortSignal: runtimeOptions.modelAbortSignal,
+        });
+      }
 
       const proxyLatency = Date.now() - proxyStartTime;
       const providerAlias = PROVIDER_ID_TO_ALIAS[provider] || provider;
