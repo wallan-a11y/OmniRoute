@@ -743,7 +743,8 @@ claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp
 The 45 agent skills in [`skills/`](skills/) are also published as installable **Claude Code plugins** — Claude learns to drive OmniRoute without you pasting docs into the chat.
 
 ```bash
-/plugin marketplace add wallan-a11y/OmniRoute
+# --sparse fetches only the catalog dirs — 14 MB instead of a full clone
+/plugin marketplace add wallan-a11y/OmniRoute --sparse .claude-plugin plugins
 /plugin install omniroute-api@omniroute   # 23 skills — REST API
 /plugin install omniroute-cli@omniroute   # 22 skills — omniroute CLI
 /plugin install omniroute-mcp@omniroute   # MCP server over stdio (ships disabled)

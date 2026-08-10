@@ -7,13 +7,22 @@ self-contained plugin directory below.
 ## Install
 
 ```bash
-# 1. register the marketplace (once)
-/plugin marketplace add wallan-a11y/OmniRoute
+# 1. register the marketplace (once). --sparse checks out only the two
+#    directories the catalog needs: 14 MB instead of the full 261 MB clone.
+/plugin marketplace add wallan-a11y/OmniRoute --sparse .claude-plugin plugins
 
 # 2. install what you need
 /plugin install omniroute-api@omniroute
 /plugin install omniroute-cli@omniroute
 /plugin install omniroute-mcp@omniroute
+```
+
+`marketplace add` clones the repository's **default branch**. If the catalog only exists on another
+branch, name it explicitly — otherwise Claude Code reports "no manifest found at
+`.claude-plugin/marketplace.json`":
+
+```bash
+/plugin marketplace add wallan-a11y/OmniRoute@<branch>
 ```
 
 Working from a local clone instead:
