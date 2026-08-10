@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "omniroute-cli",
+  "displayName": "OmniRoute — CLI Skills",
+  "version": "3.8.50",
+  "description": "22 skills that teach Claude to drive the `omniroute` command-line tool: serve, health, providers, keys, models, chat, routing, resilience, compression, contexts, cost, MCP, A2A, tunnels, backup, policy, batches, evals, plugins/memory, setup, skill collector and Codex CLI wiring.",
+  "author": {
+    "name": "OmniRoute",
+    "url": "https://github.com/wallan-a11y/OmniRoute"
+  },
+  "homepage": "https://omniroute.online",
+  "repository": "https://github.com/wallan-a11y/OmniRoute",
+  "license": "MIT",
+  "keywords": ["omniroute", "cli", "ai-router", "llm-proxy", "devtools", "automation"]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "omniroute-api",
+  "displayName": "OmniRoute — REST API Skills",
+  "version": "3.8.50",
+  "description": "23 skills that teach Claude to drive a running OmniRoute instance over its OpenAI-compatible REST API: providers, models, combos & routing, API keys, budget, cache, compression, resilience, tunnels, webhooks, MCP, A2A and inference endpoints.",
+  "author": {
+    "name": "OmniRoute",
+    "url": "https://github.com/wallan-a11y/OmniRoute"
+  },
+  "homepage": "https://omniroute.online",
+  "repository": "https://github.com/wallan-a11y/OmniRoute",
+  "license": "MIT",
+  "keywords": [
+    "omniroute",
+    "ai-router",
+    "llm-proxy",
+    "openai-compatible",
+    "routing",
+    "fallback",
+    "rest-api"
+  ]
+}

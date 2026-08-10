@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "omniroute-mcp",
+  "displayName": "OmniRoute — MCP Server",
+  "version": "3.8.50",
+  "description": "Connects Claude Code to the built-in OmniRoute MCP server (105 tools over stdio) for routing, cache, compression, memory, skills, pool, plugins and audit operations. Requires the `omniroute` CLI on PATH — ships disabled, enable it once OmniRoute is installed.",
+  "author": {
+    "name": "OmniRoute",
+    "url": "https://github.com/wallan-a11y/OmniRoute"
+  },
+  "homepage": "https://omniroute.online",
+  "repository": "https://github.com/wallan-a11y/OmniRoute",
+  "license": "MIT",
+  "keywords": ["omniroute", "mcp", "model-context-protocol", "ai-router", "tools"],
+  "defaultEnabled": false,
+  "mcpServers": "./.mcp.json"
+}

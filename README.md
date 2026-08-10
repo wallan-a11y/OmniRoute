@@ -738,6 +738,19 @@ claude mcp add-server omniroute --type http --url http://localhost:20128/api/mcp
 
 <sub>📖 [MCP Server](docs/frameworks/MCP-SERVER.md) · [A2A Server](docs/frameworks/A2A-SERVER.md) · [Agent Protocols](docs/frameworks/AGENT_PROTOCOLS_GUIDE.md)</sub>
 
+### 🧩 This repo is a Claude Code plugin marketplace
+
+The 45 agent skills in [`skills/`](skills/) are also published as installable **Claude Code plugins** — Claude learns to drive OmniRoute without you pasting docs into the chat.
+
+```bash
+/plugin marketplace add wallan-a11y/OmniRoute
+/plugin install omniroute-api@omniroute   # 23 skills — REST API
+/plugin install omniroute-cli@omniroute   # 22 skills — omniroute CLI
+/plugin install omniroute-mcp@omniroute   # MCP server over stdio (ships disabled)
+```
+
+<sub>📖 [Marketplace layout & sync](plugins/README.md) · catalog: [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json)</sub>
+
 <br/>
 
 <div align="center">

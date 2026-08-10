@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "omniroute",
+  "description": "Agent Skills and MCP tooling for OmniRoute — the unified AI router with 290+ providers, combo routing, compression and auto-fallback.",
+  "owner": {
+    "name": "OmniRoute",
+    "url": "https://github.com/wallan-a11y/OmniRoute"
+  },
+  "plugins": [
+    {
+      "name": "omniroute-api",
+      "displayName": "OmniRoute — REST API Skills",
+      "source": "./plugins/omniroute-api",
+      "description": "23 skills that teach Claude to drive a running OmniRoute instance over its OpenAI-compatible REST API: providers, models, combos & routing, API keys, budget, cache, compression, resilience, tunnels, webhooks, MCP, A2A and inference endpoints.",
+      "category": "ai-tools",
+      "keywords": [
+        "omniroute",
+        "ai-router",
+        "llm-proxy",
+        "openai-compatible",
+        "routing",
+        "fallback",
+        "rest-api"
+      ],
+      "license": "MIT",
+      "homepage": "https://omniroute.online",
+      "repository": "https://github.com/wallan-a11y/OmniRoute",
+      "author": {
+        "name": "OmniRoute",
+        "url": "https://github.com/wallan-a11y/OmniRoute"
+      }
+    },
+    {
+      "name": "omniroute-cli",
+      "displayName": "OmniRoute — CLI Skills",
+      "source": "./plugins/omniroute-cli",
+      "description": "22 skills that teach Claude to drive the `omniroute` command-line tool: serve, health, providers, keys, models, chat, routing, resilience, compression, contexts, cost, MCP, A2A, tunnels, backup, policy, batches, evals, plugins/memory, setup, skill collector and Codex CLI wiring.",
+      "category": "ai-tools",
+      "keywords": ["omniroute", "cli", "ai-router", "llm-proxy", "devtools", "automation"],
+      "license": "MIT",
+      "homepage": "https://omniroute.online",
+      "repository": "https://github.com/wallan-a11y/OmniRoute",
+      "author": {
+        "name": "OmniRoute",
+        "url": "https://github.com/wallan-a11y/OmniRoute"
+      }
+    },
+    {
+      "name": "omniroute-mcp",
+      "displayName": "OmniRoute — MCP Server",
+      "source": "./plugins/omniroute-mcp",
+      "description": "Connects Claude Code to the built-in OmniRoute MCP server (105 tools over stdio) for routing, cache, compression, memory, skills, pool, plugins and audit operations. Requires the `omniroute` CLI on PATH — ships disabled, enable it once OmniRoute is installed.",
+      "category": "ai-tools",
+      "keywords": ["omniroute", "mcp", "model-context-protocol", "ai-router", "tools"],
+      "license": "MIT",
+      "homepage": "https://omniroute.online",
+      "repository": "https://github.com/wallan-a11y/OmniRoute",
+      "author": {
+        "name": "OmniRoute",
+        "url": "https://github.com/wallan-a11y/OmniRoute"
+      },
+      "defaultEnabled": false
+    }
+  ]
+}
